@@ -122,3 +122,7 @@
   202  ls
   203  vi Makefile
   204  make
+  205  git status
+  206  git add .
+  207  git commit -m "assignment7"
+  208  git push
