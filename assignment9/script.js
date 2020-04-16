@@ -1,3 +1,5 @@
+//const fetch = require("node-fetch");
+
 fetch("https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php", {
 	"method": "GET",
 	"headers": {
@@ -9,9 +11,8 @@ fetch("https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.p
     response.json().then(text => {
         var countryArray = text.countries_stat;
         var table = document.getElementById("output");
-        var rowNumber = 1;
-        for(let i = 0; i < countryArray.length; i ++){
-            var row = table.insertRow(rowNumber++);
+        for(let i = 1; i < countryArray.length; i ++){
+            var row = table.insertRow(i);
             var country = row.insertCell(0);
             var cases = row.insertCell(1);
             var death = row.insertCell(2);
