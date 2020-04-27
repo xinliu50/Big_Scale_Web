@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Credit Card Number Verification</title>
+  <link rel="stylesheet" type="text/css" href="myStyle.css">
+</head>
+<body>
+  <div>
+    <h1> This is a simple Credit Card Number Verification project</h1>
+
+    <h2>Credit Card Number Verification</h2>
+
+    <form id="myForm">
+      <label for="card">Credit Card Number:</label><br>
+      <input type="number" id="card" name="card">
+      <input type="button" onclick="myAction()" value="Validate">
+    </form> 
+    <span id="outcome"></span>
+</div>
+<div>
+  <h2>Fake credit card numbers for all major brands</h2> <span id="refer"> This section is referenced from </span>
+    <a href="https://www.freeformatter.com/credit-card-number-generator-validator.html#fakeNumbers">Credit Card Number Generator & Validator
+    </a>
+  <p>These credit card numbers DO NOT work! They are for testing purposes only. 
+  Without a valid owner name, an expiration date and a valid CVV code, 
+  they can't be used for real transactions. You should use these numbers only to 
+  test your validation strategies and for bogus data. Note that the algorithm used here 
+  is freely available across the web even Wikipedia.org. These numbers were generated randomly.
+  </p>
+  <table id="myTable">
+    <tr>
+      <th> VISA</th> 
+      <th> MasterCard</th> 
+      <th> American Express (AMEX)</th> 
+      <th> Discover</th> 
+    </tr>
+    <tr>
+      <td>4485913855806576</td>
+      <td>5205569172191450</td>
+      <td>373076069171261</td>
+      <td>6011549313032716</td>
+    </tr>
+    <tr>
+      <td>4539982981560957</td>
+      <td>5581665534785494</td>
+      <td>375253122487202</td>
+      <td>6011290969478313</td>
+    </tr>
+    <tr>
+      <td>4532411203425454072</td>
+      <td>5220237851830795</td>
+      <td>370015797698719</td>
+      <td>6011794026732667569</td>
+    </tr>
+  </table>
+</div>
+<script>
+function myAction() {
+  var input = document.getElementById("myForm").elements[0].value
+  var lastDigit = input.charAt(input.length-1);
+  var newString = "";
+  var total = 0;
+  var double = true;
+  for(let i = input.length-2; i >= 0; i --){
+    var currenNumber = input.charAt(i);
+    if(double){
+      currenNumber = currenNumber*2;
+      if(currenNumber > 9)
+      currenNumber = currenNumber-9;
+      newString += currenNumber;
+    }else{
+      newString += currenNumber;
+    }
+    double = !double;
+    total += eval(currenNumber.valueOf());
+  }
+  var result = "";
+  if((total+eval(lastDigit.valueOf()))%10 == 0)
+    result = "The number is valid."
+  else
+    result = "The number is NOT valid!"
+  document.getElementById("outcome").innerHTML = result;
+}
+</script>
+
+</body>
+</html>
